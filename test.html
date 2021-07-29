@@ -80,7 +80,7 @@ text-decoration: none;}
           </style> 
      </head>
     <body>
-    <div class="con" style="height: 100%; -webkit-tap-highlight-color: transparent;">
+    <div class="con" onclick="javascript:void(0);" style="height: 100%; -webkit-tap-highlight-color: transparent;">
 <div class="calc" style="height: 100%; -webkit-tap-highlight-color: initial;">
         <div class="result" style="transition: all 0s ease 0s; background: rgb(245, 246, 248) none repeat scroll 0% 0%;">
             <div class="output" style="">
@@ -186,6 +186,7 @@ function copyHistorial(t) {
 window.onload = (() => {
     (function(){
     Object.prototype.on = function(eventName, handler) {
+             alert("Nuevo");
   if (this.addEventListener) {
     this.addEventListener(eventName, handler);
   } else {
@@ -193,9 +194,9 @@ window.onload = (() => {
       handler.call(this);
     });
   }
- alert("Nuevo");
 }
    Element.prototype.on = function(eventName, handler) {
+             alert("Nuevo");
   if (this.addEventListener) {
     this.addEventListener(eventName, handler);
   } else {
@@ -203,7 +204,16 @@ window.onload = (() => {
       handler.call(this);
     });
   }
-alert("Nuevo");
+}
+              
+              Array.prototype.forEach = function (t, n) {
+    "use strict";
+    var e, r;
+    if (null == this) throw new TypeError("this is null or not defined");
+    var i, o = Object(this),
+        u = o.length >>> 0;
+    if ("[object Function]" !== {}.toString.call(t)) throw new TypeError(t + " is not a function");
+    for (arguments.length >= 2 && (e = n), r = 0; r < u;) r in o && (i = o[r], t.call(e, i, r, o)), r++
 }
 })();
 var touchEvent= "ontouchstart"in window?"touchstart":"click";
@@ -240,17 +250,7 @@ document.querySelector(".modal").style.height = document.getElementById("mc").of
 document.getElementById('mclose').onclick=function(){ borrar('modal'); };
 document.getElementById('modal-back').onclick=function(){ borrar('modal'); }
 }
-
-
-Array.prototype.forEach || (Array.prototype.forEach = function (t, n) {
-    "use strict";
-    var e, r;
-    if (null == this) throw new TypeError("this is null or not defined");
-    var i, o = Object(this),
-        u = o.length >>> 0;
-    if ("[object Function]" !== {}.toString.call(t)) throw new TypeError(t + " is not a function");
-    for (arguments.length >= 2 && (e = n), r = 0; r < u;) r in o && (i = o[r], t.call(e, i, r, o)), r++
-})
+          
     if (localStorage && ("bedtime" == localStorage.getItem("i") || "wb_sunny" == localStorage.getItem("i"))) {
         var modes = document.querySelector(".mode");
         document.querySelector(".equal").style.color = localStorage.getItem("equal"), document.querySelector(".con").style.filter = localStorage.getItem("con"), modes.querySelector("i").innerHTML = localStorage.getItem("i"), document.querySelector(".select").style.left = localStorage.getItem("left"), document.querySelector(".select").style.borderColor = localStorage.getItem("borderColor"), document.documentElement.style.setProperty("--color", localStorage.getItem("color"))
@@ -362,9 +362,9 @@ Array.prototype.forEach || (Array.prototype.forEach = function (t, n) {
     }
     
     function writeHistory() {
-        if (hispart.innerHTML = "" && history.length !== 0) {
+        if (hispart.innerHTML = "", history.length !== 0) {
             historyBut.style.color = "#868789";
-            for (let t in history) hispart.innerHTML += `\n<br/>\n<div class="his" onclick="copyHistorial(this)">\n<div class="histitle">${history[t][0]}</div>\n<div class="hisresult">${history[t][1]}</div>\n<div class="histxt">Copiar operación</div>\n                </div>\n            `
+            for (let t in history) hispart.innerHTML += `\n<br/>\n<div class="his" onclick="copyHistorial(this)">\n<div class="histitle">${history[t][0]}</div>\n<div class="hisresult">${history[t][1]}</div>\n<div class="histxt">Copiar operación</div>\n   </div>\n            `
         } else historyBut.style.color = "#c9cacc"
     }
     
