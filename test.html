@@ -219,14 +219,14 @@ document.getElementById('modal-back').onclick=function(){ borrar('modal'); }
         butt = document.querySelector(".buttons"),
         sci = document.querySelector(".scienceButtons"),
         padTwo = document.querySelector(".pad-two");
-    padTwo.addEventListener(touchEvent, () => {
+    padTwo.on("click", () => {
         "1/2" == padTwo.textContent ? (butt.style.opacity = "0", butt.style.width = "0%", sci.style.opacity = "1", sci.style.width = "100%", padTwo.innerHTML = "2/2") : (sci.style.width = "0%", sci.style.opacity = "0", butt.style.opacity = "1", butt.style.width = "100%", padTwo.innerHTML = "1/2")
     });
     let result = document.querySelector(".result"),
         first = document.querySelector(".first"),
         second = document.querySelector(".second"),
         nograp = document.querySelector(".nograp");
-    document.querySelector(".pad-four").addEventListener(touchEvent, () => {
+    document.querySelector(".pad-four").on("click", () => {
         document.querySelector(".pad-tree").style["font-size"] = "16px", document.querySelector(".grap").style.opacity = "0", document.querySelector(".grap").style.width = "0%", document.querySelector(".grap").style.height = "0%", document.querySelector(".bottomPart").style.opacity = "1", document.querySelector(".bottomPart").style.width = "100%", document.querySelector(".fulldel").style.opacity = "1", document.querySelector(".part").style.opacity = "1", document.querySelector(".output").style.opacity = "1";
         try {
             graph(), document.querySelector("#plot").style.width = "0px", document.querySelector(".top-right-legend").setAttribute("y", 50), document.querySelector(".top-right-legend").setAttribute("x", 100)
@@ -425,7 +425,7 @@ document.getElementById('modal-back').onclick=function(){ borrar('modal'); }
         }, 500)
     }
     colors.forEach((t, n) => {
-        t.addEventListener(touchEvent, () => {
+        t.on("click", () => {
             document.querySelector(".select").style.left = 36 * n + 4.5 + "px", document.querySelector(".select").style.borderColor = t.style.backgroundColor, document.documentElement.style.setProperty("--color", t.style.backgroundColor), localStorage && (localStorage.setItem("left", 36 * n + 4.5 + "px"), localStorage.setItem("borderColor", t.style.backgroundColor), localStorage.setItem("color", t.style.backgroundColor));
             try {
                 graph(), document.querySelector("#plot").style.width = parseFloat(window.innerWidth) - 20 + "px", document.querySelector(".function-plot").style.width = parseFloat(window.innerWidth) - 20 + "px", document.querySelector(".top-right-legend").setAttribute("x", 100), document.querySelector(".top-right-legend").setAttribute("y", 50)
@@ -434,7 +434,7 @@ document.getElementById('modal-back').onclick=function(){ borrar('modal'); }
             }
         })
     }), sciBut.forEach((t, n) => {
-        t.addEventListener(touchEvent, () => {
+        t.on("click", () => {
             switch (first.style.color = "#000", t.textContent) {
             case "=":
                 isNumber(proces[proces.length - 1]) && (proces.toString().replace(/,/g, "").includes("=") ? first.innerHTML = writeAll(proces) : (proces.push("="), first.innerHTML = writeAll(proces)));
@@ -501,18 +501,18 @@ document.getElementById('modal-back').onclick=function(){ borrar('modal'); }
             }
             second.innerHTML = solve(proces)
         })
-    }), mode.addEventListener(touchEvent, () => {
+    }), mode.on("click", () => {
         let t = mode.querySelector("i"),
             n = document.querySelector(".con"),
             e = document.querySelector(".equal");
         "bedtime" == t.textContent ? (e.style.color = "#fff", n.style.filter = "", t.innerHTML = "wb_sunny") : (e.style.color = "#000", n.style.filter = "hue-rotate(180deg) invert(90%)", t.innerHTML = "bedtime"), localStorage && (localStorage.setItem("equal", e.style.color), localStorage.setItem("con", n.style.filter), localStorage.setItem("i", t.innerHTML))
-    }), writeHistory(), historyBut.addEventListener(touchEvent, () => {
+    }), writeHistory(), historyBut.on("click", () => {
         hispart.style.opacity = "1", 0 !== history.length && ("0px" == historyPart.style.left ? (historyPart.style.left = "-75%", historyBut.innerHTML = "HISTORIAL", writeHistory()) : (historyPart.style.left = "0px", historyBut.innerHTML = "TECLADO", writeHistory()))
-    }), clshis.addEventListener(touchEvent, () => {
+    }), clshis.on("click", () => {
         history = [], hispart.style.opacity = "0", setTimeout(() => {
             writeHistory(), historyPart.style.left = "-75%", historyBut.innerHTML = "HISTORIAL"
         }, 350)
-    }), ac.addEventListener(touchEvent, () => {
+    }), ac.on("click", () => {
         clear()
     });
     var NumberTheory = {};
@@ -593,7 +593,7 @@ document.getElementById('modal-back').onclick=function(){ borrar('modal'); }
             n = "error"
         }
         return n
-    }, del.addEventListener(touchEvent, () => {
+    }, del.on("click", () => {
         if (first.style.color = "#000", proces.length) {
             if (1 == proces[proces.length - 1].length) proces.pop();
             else if (isNumber(proces[proces.length - 1]))
@@ -606,10 +606,10 @@ document.getElementById('modal-back').onclick=function(){ borrar('modal'); }
             first.innerHTML = writeAll(proces), second.innerHTML = solve(proces)
         }
     }), buttons.forEach((t, n) => {
-        t.addEventListener(touchEvent, n => {
+        t.on("click", n => {
             0 !== history.length && (historyPart.style.left = "-75%", historyBut.innerHTML = "HISTORIAL"), t.textContent == toNumber(t.textContent) ? "x" == proces[proces.length - 1] ? (proces.push("×"), proces.push(t.textContent)) : ")" == proces[proces.length - 1] ? (proces.push("×"), proces.push(t.textContent)) : "!" !== proces[proces.length - 1] && isNumber(proces[proces.length - 1]) ? proces[proces.length - 1] += t.textContent : "!" == proces[proces.length - 1] ? (proces.push("×"), proces.push("("), proces.push(t.textContent)) : proces.push(t.textContent) : "AC" == t.textContent ? clear() : "." == t.textContent ? proces[proces.length - 1] == toNumber(proces[proces.length - 1]) && -1 == proces[proces.length - 1].indexOf(".") && (proces[proces.length - 1] += ".") : "+/-" == t.textContent ? "!" !== proces[proces.length - 1] && ("+" == proces[proces.length - 2] || "" == proces[proces.length - 2] ? proces[proces.length - 2] = "-" : "-" == proces[proces.length - 2] ? null == proces[proces.length - 3] || "=" == proces[proces.length - 3] || proces[1] == proces[proces.length - 2] ? proces[proces.length - 2] = "" : proces[proces.length - 2] = "+" : !isNumber(proces[proces.length - 1]) && "x" != proces[proces.length - 1] || "-" === proces[proces.length - 2] && null != proces[proces.length - 2] || (proces.push(proces[proces.length - 1]), proces[proces.length - 2] = "-")) : "▷" == t.textContent ? "no" !== isSolve(proces) && endResult() : ("(" != proces[proces.length - 2] || "-" == t.textContent || isNumber(proces[proces.length - 1])) && ("( )" == t.textContent ? !isNumber(proces[proces.length - 1]) && ")" != proces[proces.length - 1] || bracketValidator(proces.join(""))[0] ? isNumber(proces[proces.length - 1]) || ")" == proces[proces.length - 1] ? (proces.push("×"), proces.push("("), first.innerHTML = writeAll(proces)) : (proces.push("("), first.innerHTML = writeAll(proces)) : (proces.push(")"), first.innerHTML = writeAll(proces)) : isNumber(proces[proces.length - 1]) ? proces.push(t.textContent) : null == proces[proces.length - 1] && "-" == t.textContent ? proces.push("-") : "(" == proces[proces.length - 2] && "-" == t.textContent && "-" == proces[proces.length - 1] ? (proces.push("("), proces.push(t.textContent)) : "=" == proces[proces.length - 1] && "-" == t.textContent ? proces.push("-") : ("=" != proces[proces.length - 1] || isNumber(t.textContent)) && ("(" == proces[proces.length - 1] && "-" == t.textContent ? proces.push("-") : 0 !== proces.length && "(" !== proces[proces.length - 1] && ("-" == proces[0] && null == proces[proces.length - 2] ? "+" == t.textContent && (proces = []) : (console.log("c"), isFunction(proces[proces.length - 1]) && !isOperator(t.textContent) ? proces.push(t.textContent) : isFunction(proces[proces.length - 2]) && !isOperator(t.textContent) ? proces[proces.length - 1] = t.textContent : isNumber(proces[proces.length - 2]) && isOperator(t.textContent) && (proces[proces.length - 1] = t.textContent))))), first.innerHTML = writeAll(proces), second.innerHTML = solve(proces)
         })
-    }), document.querySelector(".pad-tree").addEventListener(touchEvent, () => {
+    }), document.querySelector(".pad-tree").on("click", () => {
         try {
             graph(), document.querySelector(".bottomPart").style.opacity = "0", document.querySelector(".bottomPart").style.transition = "all 1S", document.querySelector(".bottomPart").style.width = "0%", document.querySelector(".grap").style.opacity = "1", document.querySelector(".grap").style.width = "100%", document.querySelector(".grap").style.height = "100%", document.querySelector(".grap").style.height = "80vh", document.querySelector(".fulldel").style.opacity = "0", document.querySelector(".part").style.opacity = "0", document.querySelector(".output").style.opacity = "0", document.querySelector("#plot").style.width = parseFloat(window.innerWidth) - 20 + "px", document.querySelector(".top-right-legend").setAttribute("x", 100), document.querySelector(".top-right-legend").setAttribute("y", 50)
         } catch (t) {
