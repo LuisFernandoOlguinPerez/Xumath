@@ -163,6 +163,7 @@ text-decoration: none;}
       </div>  
     </div>
     <script>
+
 (function(){
     Object.prototype.on = function(eventName, handler) {
   if (this.addEventListener) {
@@ -176,24 +177,24 @@ text-decoration: none;}
 })();
 var touchEvent= "ontouchstart"in window?"touchstart":"click";
 if("ontouchstart"in window){
-    touchEvent = "ontouchstart";
+    touchEvent = "touchstart";
 }
 if("ontouchmove"in window){
-    touchEvent = "ontouchmove";
+    touchEvent = "touchmove";
 }
 if("ontouchcancel"in window){
-    touchEvent = "ontouchcancel";
+    touchEvent = "touchcancel";
 }
 if("ontouchend"in window){
-    touchEvent = "ontouchend";
+    touchEvent = "touchend";
 }
-if("tap"in window){
+if("ontap"in window){
     touchEvent = "tap";
 }
-if("click"in window){
+if("onclick"in window){
     touchEvent = "click";
 }
-
+              
 function borrar(id) {var elem = document.getElementById(id); return elem.parentNode.removeChild(elem);}
 
 function msj(titulo, contenido, idioma) {
@@ -209,7 +210,7 @@ document.getElementById('mclose').onclick=function(){ borrar('modal'); };
 document.getElementById('modal-back').onclick=function(){ borrar('modal'); }
 }
 
-msj("Enviame esto:", touchEvent.toString(), "Cerrar");
+//msj("Enviame esto:", touchEvent.toString(), "Cerrar");
 
 function shift(t) {
     var n = document.querySelector(".shift"),
