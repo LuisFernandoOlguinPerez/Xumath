@@ -80,7 +80,7 @@ text-decoration: none;}
           </style> 
      </head>
     <body>
-    <div class="con" style="height: 100%; -webkit-tap-highlight-color: transparent;">
+    <div class="con" onclick="void(0);" style="height: 100%; -webkit-tap-highlight-color: transparent;">
 <div class="calc" style="height: 100%; -webkit-tap-highlight-color: initial;">
         <div class="result" style="transition: all 0s ease 0s; background: rgb(245, 246, 248) none repeat scroll 0% 0%;">
             <div class="output" style="">
@@ -166,6 +166,14 @@ text-decoration: none;}
 
 (function(){
     Object.prototype.on = function(eventName, handler) {
+  if (this.addEventListener) {
+    this.addEventListener(eventName, handler);
+  } else {
+    this.attachEvent('on' + eventName, function(){
+      handler.call(this);
+    });
+  }
+  Element.prototype.on = function(eventName, handler) {
   if (this.addEventListener) {
     this.addEventListener(eventName, handler);
   } else {
