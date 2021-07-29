@@ -80,7 +80,7 @@ text-decoration: none;}
           </style> 
      </head>
     <body>
-    <div class="con" onclick="void(0);" style="height: 100%; -webkit-tap-highlight-color: transparent;">
+    <div class="con" style="height: 100%; -webkit-tap-highlight-color: transparent;">
 <div class="calc" style="height: 100%; -webkit-tap-highlight-color: initial;">
         <div class="result" style="transition: all 0s ease 0s; background: rgb(245, 246, 248) none repeat scroll 0% 0%;">
             <div class="output" style="">
@@ -163,8 +163,28 @@ text-decoration: none;}
       </div>  
     </div>
     <script>
+//msj("Enviame esto:", touchEvent.toString(), "Cerrar");
+function shift(t) {
+    var n = document.querySelector(".shift"),
+        e = document.querySelector(".sin"),
+        r = document.querySelector(".cos"),
+        i = document.querySelector(".tan"),
+        o = document.querySelector(".in");
+    1 == t ? (n.setAttribute("onclick", "shift(0)"), n.style.backgroundColor = "#c5c5c5", e.innerHTML = "sin<sup>-1</sup>", r.innerHTML = "cos<sup>-1</sup>", i.innerHTML = "tan<sup>-1</sup>", o.innerHTML = "ln") : (n.setAttribute("onclick", "shift(1)"), n.style.backgroundColor = "#f5f5f5", e.innerHTML = "sin", r.innerHTML = "cos", i.innerHTML = "tan", o.innerHTML = "log")
+}
 
-(function(){
+function copy() {
+    var t = document.createElement("input");
+    t.setAttribute("value", document.querySelector(".output").textContent.trim().replace(/\s/, "=").replace(/\s/g, "")), document.body.appendChild(t), t.select(), document.execCommand("copy"), document.body.removeChild(t), alert("Copiado")
+}
+
+function copyHistorial(t) {
+    var n = document.createElement("input");
+    n.setAttribute("value", t.textContent.replace("Copiar operación", "").trim().replace(/\s/, "=").replace(/\s/g, "")), document.body.appendChild(n), n.select(), document.execCommand("copy"), document.body.removeChild(n), alert("Copiado del historial")
+}
+
+window.onload = (() => {
+    (function(){
     Object.prototype.on = function(eventName, handler) {
   if (this.addEventListener) {
     this.addEventListener(eventName, handler);
@@ -173,6 +193,7 @@ text-decoration: none;}
       handler.call(this);
     });
   }
+ alert("Nuevo");
 }
    Element.prototype.on = function(eventName, handler) {
   if (this.addEventListener) {
@@ -182,6 +203,7 @@ text-decoration: none;}
       handler.call(this);
     });
   }
+alert("Nuevo");
 }
 })();
 var touchEvent= "ontouchstart"in window?"touchstart":"click";
@@ -203,7 +225,7 @@ if("ontap"in window){
 if("onclick"in window){
     touchEvent = "click";
 }
-              
+     alert(touchEvent);         
 function borrar(id) {var elem = document.getElementById(id); return elem.parentNode.removeChild(elem);}
 
 function msj(titulo, contenido, idioma) {
@@ -219,25 +241,7 @@ document.getElementById('mclose').onclick=function(){ borrar('modal'); };
 document.getElementById('modal-back').onclick=function(){ borrar('modal'); }
 }
 
-//msj("Enviame esto:", touchEvent.toString(), "Cerrar");
-function shift(t) {
-    var n = document.querySelector(".shift"),
-        e = document.querySelector(".sin"),
-        r = document.querySelector(".cos"),
-        i = document.querySelector(".tan"),
-        o = document.querySelector(".in");
-    1 == t ? (n.setAttribute("onclick", "shift(0)"), n.style.backgroundColor = "#c5c5c5", e.innerHTML = "sin<sup>-1</sup>", r.innerHTML = "cos<sup>-1</sup>", i.innerHTML = "tan<sup>-1</sup>", o.innerHTML = "ln") : (n.setAttribute("onclick", "shift(1)"), n.style.backgroundColor = "#f5f5f5", e.innerHTML = "sin", r.innerHTML = "cos", i.innerHTML = "tan", o.innerHTML = "log")
-}
 
-function copy() {
-    var t = document.createElement("input");
-    t.setAttribute("value", document.querySelector(".output").textContent.trim().replace(/\s/, "=").replace(/\s/g, "")), document.body.appendChild(t), t.select(), document.execCommand("copy"), document.body.removeChild(t), alert("Copiado")
-}
-
-function copyHistorial(t) {
-    var n = document.createElement("input");
-    n.setAttribute("value", t.textContent.replace("Copiar operación", "").trim().replace(/\s/, "=").replace(/\s/g, "")), document.body.appendChild(n), n.select(), document.execCommand("copy"), document.body.removeChild(n), alert("Copiado del historial")
-}
 Array.prototype.forEach || (Array.prototype.forEach = function (t, n) {
     "use strict";
     var e, r;
@@ -246,7 +250,7 @@ Array.prototype.forEach || (Array.prototype.forEach = function (t, n) {
         u = o.length >>> 0;
     if ("[object Function]" !== {}.toString.call(t)) throw new TypeError(t + " is not a function");
     for (arguments.length >= 2 && (e = n), r = 0; r < u;) r in o && (i = o[r], t.call(e, i, r, o)), r++
-}), window.onload = (() => {
+})
     if (localStorage && ("bedtime" == localStorage.getItem("i") || "wb_sunny" == localStorage.getItem("i"))) {
         var modes = document.querySelector(".mode");
         document.querySelector(".equal").style.color = localStorage.getItem("equal"), document.querySelector(".con").style.filter = localStorage.getItem("con"), modes.querySelector("i").innerHTML = localStorage.getItem("i"), document.querySelector(".select").style.left = localStorage.getItem("left"), document.querySelector(".select").style.borderColor = localStorage.getItem("borderColor"), document.documentElement.style.setProperty("--color", localStorage.getItem("color"))
@@ -300,7 +304,7 @@ Array.prototype.forEach || (Array.prototype.forEach = function (t, n) {
         }
         grap.style.display = "block", grap.style.width = "60px", grap.style.height = "15px", grap.style["font-size"] = "16px", grap.style.opacity = "1"
     });
-    let del = document.querySelector(".delete"),
+    var del = document.querySelector(".delete"),
         ac = document.querySelector(".clear"),
         fulldel = document.querySelector(".fulldel"),
         rippleBut = document.querySelectorAll(".ripple"),
@@ -339,7 +343,7 @@ Array.prototype.forEach || (Array.prototype.forEach = function (t, n) {
             }
         }
     });
-    let colors = document.querySelectorAll(".color");
+    var colors = document.querySelectorAll(".color");
     
     function isNumber(t) {
         if (t == Number(t) || "." == t || "π" == t || "e" == t || "!" == t || "x" == t || ")" == t) return !0
@@ -358,9 +362,9 @@ Array.prototype.forEach || (Array.prototype.forEach = function (t, n) {
     }
     
     function writeHistory() {
-        if (hispart.innerHTML = "", 0 !== history.length) {
+        if (hispart.innerHTML = "" && history.length !== 0) {
             historyBut.style.color = "#868789";
-            for (let t in history) hispart.innerHTML += `\n                <br/>\n                <div class="his" onclick="copyHistorial(this)">\n                    <div class="histitle">${history[t][0]}</div>\n                    <div class="hisresult">${history[t][1]}</div>\n                    <div class="histxt">Copiar operación</div>\n                </div>\n            `
+            for (let t in history) hispart.innerHTML += `\n<br/>\n<div class="his" onclick="copyHistorial(this)">\n<div class="histitle">${history[t][0]}</div>\n<div class="hisresult">${history[t][1]}</div>\n<div class="histxt">Copiar operación</div>\n                </div>\n            `
         } else historyBut.style.color = "#c9cacc"
     }
     
@@ -658,7 +662,7 @@ Array.prototype.forEach || (Array.prototype.forEach = function (t, n) {
             n = "error"
         }
         return n
-    }, del.addEventListener("click", () => {
+    }, del.addEventListener(touchEvent, () => {
         if (first.style.color = "#000", proces.length) {
             if (1 == proces[proces.length - 1].length) proces.pop();
             else if (isNumber(proces[proces.length - 1]))
@@ -671,10 +675,10 @@ Array.prototype.forEach || (Array.prototype.forEach = function (t, n) {
             first.innerHTML = writeAll(proces), second.innerHTML = solve(proces)
         }
     }), buttons.forEach((t, n) => {
-        t.addEventListener("click", n => {
+        t.addEventListener(touchEvent, n => {
             0 !== history.length && (historyPart.style.left = "-75%", historyBut.innerHTML = "HISTORIAL"), t.textContent == toNumber(t.textContent) ? "x" == proces[proces.length - 1] ? (proces.push("×"), proces.push(t.textContent)) : ")" == proces[proces.length - 1] ? (proces.push("×"), proces.push(t.textContent)) : "!" !== proces[proces.length - 1] && isNumber(proces[proces.length - 1]) ? proces[proces.length - 1] += t.textContent : "!" == proces[proces.length - 1] ? (proces.push("×"), proces.push("("), proces.push(t.textContent)) : proces.push(t.textContent) : "AC" == t.textContent ? clear() : "." == t.textContent ? proces[proces.length - 1] == toNumber(proces[proces.length - 1]) && -1 == proces[proces.length - 1].indexOf(".") && (proces[proces.length - 1] += ".") : "+/-" == t.textContent ? "!" !== proces[proces.length - 1] && ("+" == proces[proces.length - 2] || "" == proces[proces.length - 2] ? proces[proces.length - 2] = "-" : "-" == proces[proces.length - 2] ? null == proces[proces.length - 3] || "=" == proces[proces.length - 3] || proces[1] == proces[proces.length - 2] ? proces[proces.length - 2] = "" : proces[proces.length - 2] = "+" : !isNumber(proces[proces.length - 1]) && "x" != proces[proces.length - 1] || "-" === proces[proces.length - 2] && null != proces[proces.length - 2] || (proces.push(proces[proces.length - 1]), proces[proces.length - 2] = "-")) : "▷" == t.textContent ? "no" !== isSolve(proces) && endResult() : ("(" != proces[proces.length - 2] || "-" == t.textContent || isNumber(proces[proces.length - 1])) && ("( )" == t.textContent ? !isNumber(proces[proces.length - 1]) && ")" != proces[proces.length - 1] || bracketValidator(proces.join(""))[0] ? isNumber(proces[proces.length - 1]) || ")" == proces[proces.length - 1] ? (proces.push("×"), proces.push("("), first.innerHTML = writeAll(proces)) : (proces.push("("), first.innerHTML = writeAll(proces)) : (proces.push(")"), first.innerHTML = writeAll(proces)) : isNumber(proces[proces.length - 1]) ? proces.push(t.textContent) : null == proces[proces.length - 1] && "-" == t.textContent ? proces.push("-") : "(" == proces[proces.length - 2] && "-" == t.textContent && "-" == proces[proces.length - 1] ? (proces.push("("), proces.push(t.textContent)) : "=" == proces[proces.length - 1] && "-" == t.textContent ? proces.push("-") : ("=" != proces[proces.length - 1] || isNumber(t.textContent)) && ("(" == proces[proces.length - 1] && "-" == t.textContent ? proces.push("-") : 0 !== proces.length && "(" !== proces[proces.length - 1] && ("-" == proces[0] && null == proces[proces.length - 2] ? "+" == t.textContent && (proces = []) : (console.log("c"), isFunction(proces[proces.length - 1]) && !isOperator(t.textContent) ? proces.push(t.textContent) : isFunction(proces[proces.length - 2]) && !isOperator(t.textContent) ? proces[proces.length - 1] = t.textContent : isNumber(proces[proces.length - 2]) && isOperator(t.textContent) && (proces[proces.length - 1] = t.textContent))))), first.innerHTML = writeAll(proces), second.innerHTML = solve(proces)
         })
-    }), document.querySelector(".pad-tree").addEventListener("click", () => {
+    }), document.querySelector(".pad-tree").addEventListener(touchEvent, () => {
         try {
             graph(), document.querySelector(".bottomPart").style.opacity = "0", document.querySelector(".bottomPart").style.transition = "all 1S", document.querySelector(".bottomPart").style.width = "0%", document.querySelector(".grap").style.opacity = "1", document.querySelector(".grap").style.width = "100%", document.querySelector(".grap").style.height = "100%", document.querySelector(".grap").style.height = "80vh", document.querySelector(".fulldel").style.opacity = "0", document.querySelector(".part").style.opacity = "0", document.querySelector(".output").style.opacity = "0", document.querySelector("#plot").style.width = parseFloat(window.innerWidth) - 20 + "px", document.querySelector(".top-right-legend").setAttribute("x", 100), document.querySelector(".top-right-legend").setAttribute("y", 50)
         } catch (t) {
