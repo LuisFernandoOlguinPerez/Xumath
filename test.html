@@ -173,7 +173,8 @@ text-decoration: none;}
       handler.call(this);
     });
   }
-  Element.prototype.on = function(eventName, handler) {
+}
+   Element.prototype.on = function(eventName, handler) {
   if (this.addEventListener) {
     this.addEventListener(eventName, handler);
   } else {
